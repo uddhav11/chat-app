@@ -1,0 +1,21 @@
+.App{
+    min-height: 100vh;
+    display: flex;
+    /* text-align: center; */
+    color: white;
+    background-image: url('./1.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+::-webkit-scrollbar{
+    width: 0px;
+}
+
+::-webkit-scrollbar-thumb{
+    background: rgba(136, 136, 136, 0.281);
+}
+
+::-webkit-slider-thumb:hover{
+    background: #555 ;
+}
