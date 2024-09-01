@@ -7,6 +7,7 @@ const messageRoutes = require("./routes/messageRoutes");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware.js");
 const cors = require("cors");
 const chatRoutes = require("./routes/chatRoutes");
+const path= require('path')
 
 const PORT = process.env.PORT || 4000;
 const app = express();
@@ -22,6 +23,27 @@ app.use("/api/chat", chatRoutes);
 app.use("/api/message", messageRoutes);
 
 
+// ----------Deployment code --------------------------------------
+
+const __dirname1= path.resolve(__dirname, "..");
+console.log(__dirname1)
+
+if(process.env.NODE_ENV === 'production'){
+
+  app.use(express.static(path.join(__dirname1, "frontend/build")))
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname1, "frontend" ,"build", "index.html"))
+  })
+
+
+} else{
+  app.get("/", (req, res) => {
+    res.send('API is Running successfully')
+  })
+}
+
+// ----------Deployment code --------------------------------------
 
 
 
